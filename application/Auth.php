@@ -18,14 +18,14 @@ class Auth
     private $_isVerified = false;
     
     /** @var  array /
-    private $_lineConfig;
-    
-    /**
+    * private $_lineConfig;
+ *
+* /**
      * Auth constructor.
-     * @param $json
-     * @param $signature
+     * @param Request $request
+     * @param string $signature
      */
-    public function __construct($json, $signature)
+    public function __construct($request, $signature)
     {
         $ini = parse_ini_file(APP_PATH . '/settings.ini', true)['line'];
         $this->_channelId     = $ini['channel_id'];
@@ -33,14 +33,14 @@ class Auth
         $this->_mid           = $ini['mid'];
 
         // 署名比較
-        if ($signature === base64_encode(hash_hmac('sha256', $json, $this->_channelSecret, true))) {
+        if ($signature === base64_encode(hash_hmac('sha256', $request->getJson(), $this->_channelSecret, true))) {
             $this->_isVerified = true;
         }
         
         // LineBot用のconfigフォーマット
         $this->_lineConfig = ['channelId'     => $this->_channelId,
                               'channelSecret' => $this->_channelSecret,
-                              'channelMid' => $this->_mid];
+                              'channelMid'    => $this->_mid];
     }
 
     /**
