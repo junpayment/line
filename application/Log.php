@@ -11,9 +11,8 @@ class Log
      * @param $line
      * @param $message
      */
-    public static function logger($priority, $method, $line, $message)
+    public static function logger($priority, $method, $line, $message = "")
     {
-        syslog($priority, "$method\t$line\t$message");
+        syslog($priority, "$method $line $message");
     }
 }
-
