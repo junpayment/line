@@ -6,3 +6,4 @@ function strict_error_handler($errno, $errstr, $errfile, $errline)
 set_error_handler("strict_error_handler");
 
 require_once('./application/root.php');
+
