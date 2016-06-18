@@ -1,5 +1,5 @@
 <?php
-
+namespace LineN;
 /**
  * Class Auth
  */

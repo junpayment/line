@@ -1,5 +1,6 @@
 <?php
 
+namespace LineN;
 /**
  * Class Log
  */

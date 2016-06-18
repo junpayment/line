@@ -1,0 +1,7 @@
+{
+        "require": {
+                "guzzlehttp/guzzle": "*",
+                "linecorp/line-bot-sdk": "*",
+                "predis/predis": "*"
+        }
+}

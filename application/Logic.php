@@ -1,5 +1,7 @@
 <?php
 
+namespace LineN;
+
 /**
  * Class Logic
  */
@@ -28,7 +30,7 @@ class Logic
             // authorization check
             $auth = new Auth($request, $signature);
             if (! $auth->isVerified()) {
-                throw new Exception('failed authorization!');
+                throw new \Exception('failed authorization!');
             }
             
             // send
@@ -40,7 +42,7 @@ class Logic
             http_response_code(200);
             echo json_encode(['response' => 'success']);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             http_response_code(470);
             Log::logger(LOG_ERR, __METHOD__, __LINE__, $e->getMessage() . ' : ' . $e->getTraceAsString());
         }
