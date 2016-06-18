@@ -1,5 +1,5 @@
 # Shiritori with LINE Bot API
-![しりとり大好き少年](https://raw.githubusercontent.com/junpayment/line/hoge.png)
+![しりとり大好き少年](https://raw.githubusercontent.com/junpayment/line/master/hoge.png)
 
 # requirement
 php5.6
