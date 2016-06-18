@@ -3,5 +3,12 @@
                 "guzzlehttp/guzzle": "*",
                 "linecorp/line-bot-sdk": "*",
                 "predis/predis": "*"
+        },
+
+        "autoload": {
+                "psr-4": {
+                        "LineN\\": "../",
+                        "LineN\\Shiritori\\": "../"
+                }
         }
 }

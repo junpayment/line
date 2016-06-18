@@ -1,6 +1,7 @@
 <?php
 
 namespace LineN;
+use LineN\Shiritori\ResponseShiritori;
 
 /**
  * Class Logic
@@ -34,10 +35,21 @@ class Logic
             }
             
             // send
-            $text = ['でゅっふっふ', 'それがプロマネです(ｷﾘ', 'はいすいろ..はいすいろ...', '俺のゲームの邪魔をする奴は殺す！'];
+            $shiritori = new \LineN\Shiritori\Shiritori($request->getFromMid());
+            if (true === $shiritori->checkShiritori($request->getText())) {
+                $res = $shiritori->post($request->getText());
+                if (ResponseShiritori::RESULT_CONTINUE == $res->getResult()) {
+                    $out = $res->getNext(); 
+                } else {
+                    $out = $res->getStatusText($res->getResult());
+                }
+            } else {
+                $text = ['しりとりしよ？', 'ねえしりとりしようよ！', '"しりとり"って打ったらスタートだよ！'];
+                $out = $text[array_rand($text)];
+            }
             
             $line = new \LINE\LINEBot($auth->getLineConfigAsArray(), new \LINE\LINEBot\HTTPClient\GuzzleHTTPClient($auth->getLineConfigAsArray()));
-            $line->sendText([$request->getFromMid()], $text[array_rand($text)]);
+            $line->sendText([$request->getFromMid()], $out);
             
             http_response_code(200);
             echo json_encode(['response' => 'success']);
