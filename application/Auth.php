@@ -16,7 +16,10 @@ class Auth
     
     /** @var bool  */
     private $_isVerified = false;
-    
+
+    /** @var array  */
+    private $_lineConfig;
+
     /**
      * Auth constructor.
      * @param Request $request
